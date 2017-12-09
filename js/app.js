@@ -87,7 +87,6 @@ function validandomovimiento(id, id2){
 	var c=Number(id2)+7;
 	var d=Number(id2)-7;
 
-	console.log(b+'-->'+id);
 	if(a==id || b==id || c==id || d==id){
 
 		return true;
@@ -171,8 +170,22 @@ function agregarElementos(id, elemento1, elemento2){
 	var imgizqui=$("#"+elemento2+' img').attr('src');
 
 	if(elemento1!==undefined && elemento2!==undefined){
-		if(imgOriginal===imgderecha && imgOriginal===imgizqui){		
+		if(imgOriginal===imgderecha && imgOriginal===imgizqui){	
+			
+
+		
+				destello1(id, elemento1, elemento2);
+				destello2(id, elemento1, elemento2);
+				destello1(id, elemento1, elemento2);
+				destello2(id, elemento1, elemento2);
+				destello1(id, elemento1, elemento2);
+				destello2(id, elemento1, elemento2);
+			
+			
+			
+
 			puntuacion+=(10*3);
+			window.setTimeout(function(){
 			$("#score-text").text(puntuacion);
 			for(i=0; i<=7; i++){
 				var sigu1=id-1;
@@ -217,9 +230,39 @@ function agregarElementos(id, elemento1, elemento2){
 				elemento1--;
 				elemento2--;
 			}
+		},6000);
 		}
 	}
 
+}
+
+function destello1(id, elemento1, elemento2){
+	$("#"+id+' img').animate({
+				opacity:0
+			},1000);
+
+	$("#"+elemento1+' img').animate({
+				opacity:0
+			},1000);
+
+	$("#"+elemento2+' img').animate({
+				opacity:0
+			},1000)
+}
+
+function destello2(id, elemento1, elemento2){
+
+	$("#"+id+' img').animate({
+				opacity:1
+			},1000);
+
+	$("#"+elemento1+' img').animate({
+				opacity:1
+			},1000);
+
+	$("#"+elemento2+' img').animate({
+				opacity:1
+			},1000)
 }
 
 	
@@ -238,7 +281,17 @@ for(i=1; i<=7; i++){
 	}
 
 if(imgOriginal==imgarriba && imgOriginal==imgarriba2 && id!=final){
+
+	destello1(id, elemento1, elemento2);
+	destello2(id, elemento1, elemento2);
+	destello1(id, elemento1, elemento2);
+	destello2(id, elemento1, elemento2);
+	destello1(id, elemento1, elemento2);
+	destello2(id, elemento1, elemento2);
+
 	puntuacion+=(10*3);
+
+	window.setTimeout(function(){
 	$("#score-text").text(puntuacion);
 
 	for(i=1; i<=7; i++){
@@ -278,6 +331,7 @@ if(imgOriginal==imgarriba && imgOriginal==imgarriba2 && id!=final){
 			
 			break;}
 		}
+	},6000);
 	}
 }
 
